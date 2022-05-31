@@ -49,7 +49,7 @@ struct ContentView: View {
     @ObservedObject var book : Book
     @ObservedObject var manga : Manga
     @ObservedObject var anime : Anime
-    @ObservedObject var movie : Movie
+    @StateObject var movie : Movie
     var body: some View {
         NavigationView{
             ScrollView{

@@ -22,7 +22,7 @@ struct AddView: View {
     @State private var chapters: Int?
     @State private var review = ""
     let generator = UINotificationFeedbackGenerator()
-        
+    @State private var showAlert = false
     @ObservedObject var manga: Manga
     @ObservedObject var anime: Anime
     @ObservedObject var movie: Movie
@@ -64,21 +64,30 @@ struct AddView: View {
                 }
             }
             .navigationTitle("Add Item")
+            .alert(isPresented: $showAlert){
+                Alert(title: Text("Textfield Empty"), message: Text("Enter Name"), dismissButton: .default(Text("Continue")))
+            }
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save"){
-                        if selectedOption == 0{
-                            addManga()
-                        }else if selectedOption == 1{
-                            addAnime()
-                        }else if selectedOption == 2{
-                            addMovies()
+                        if name.isEmpty  {
+                            showAlert = true
                         }else{
-                            addBooks()
+                            if selectedOption == 0{
+                                addManga()
+                                
+                            }else if selectedOption == 1{
+                                addAnime()
+                            }else if selectedOption == 2{
+                                addMovies()
+                            }else{
+                                addBooks()
+                            }
                         }
                     }
                 }
             }
+        
         }
     }
     func addManga(){
