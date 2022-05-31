@@ -23,7 +23,7 @@ struct AddView: View {
     @State private var review = ""
     let generator = UINotificationFeedbackGenerator()
         
-    @EnvironmentObject var manga: Manga
+    @ObservedObject var manga: Manga
     @ObservedObject var anime: Anime
     @ObservedObject var movie: Movie
     @ObservedObject var book: Book

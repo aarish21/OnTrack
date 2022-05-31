@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct MovieDetails: View {
-    @State var movie: MoviesList
-    @ObservedObject var movies : Movie
+
+    @EnvironmentObject var movieObject : Movie
     @State private var name = ""
     @State private var rating = 1
     @State private var episodes: Int = 0
     @State private var review = ""
+    var index: Int
     var body: some View {
         List{
             TextField("Name", text: $name)
@@ -30,17 +31,20 @@ struct MovieDetails: View {
             TextEditor(text: $review)
                 .frame(height: 100)
         }.onAppear {
-            name = movie.name
-            review = movie.review
-            episodes = movie.episode
-            rating = movie.rating
+            name = movieObject.items[index].name
+            rating = movieObject.items[index].rating
+            episodes = movieObject.items[index].episode
+            review = movieObject.items[index].review
         }
         .onDisappear {
             saveChanges()
         }
     }
     func saveChanges(){
-        
+        movieObject.items[index].name = name
+        movieObject.items[index].episode = episodes
+        movieObject.items[index].rating = rating
+        movieObject.items[index].review = review
     }
         
 }

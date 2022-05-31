@@ -17,14 +17,15 @@ struct MovieTracked: View {
     var body: some View {
         
         List{
-            ForEach(filteredMovie){ list in
-                NavigationLink(destination: MovieDetails(movie: list)){
+            ForEach(filteredMovie.indices, id: \.self){ index in
+                NavigationLink(destination:MovieDetails(index: index).environmentObject(movie)) {
                 HStack{
+                
                     VStack(alignment: .leading){
-                        Text(list.name)
+                        Text(filteredMovie[index].name)
                             .font(.title)
                             .fontWeight(.bold)
-                        Text(" Ep \(list.episode)")
+                        Text(" Ep \(filteredMovie[index].episode)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
@@ -32,7 +33,7 @@ struct MovieTracked: View {
                             Image(systemName: "star.circle.fill")
                                 .foregroundColor(.secondary)
                                 .font(.subheadline)
-                            Text("\(list.rating)")
+                            Text("\(filteredMovie[index].rating)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
@@ -66,8 +67,7 @@ struct MovieTracked: View {
             }
         }
         .sheet(isPresented: $showAddOption){
-            AddView(selectedOption: 2, anime: self.anime, movie: self.movie, book: self.book)
-                .environmentObject(manga)
+            AddView(selectedOption: 2,manga: self.manga, anime: self.anime, movie: self.movie, book: self.book)
         }
         
     }
