@@ -14,6 +14,13 @@
 		6F8E09D4284408530095095E /* OnTrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09D3284408530095095E /* OnTrackTests.swift */; };
 		6F8E09DE284408530095095E /* OnTrackUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09DD284408530095095E /* OnTrackUITests.swift */; };
 		6F8E09E0284408530095095E /* OnTrackUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09DF284408530095095E /* OnTrackUITestsLaunchTests.swift */; };
+		6F8E09EE284408840095095E /* AnimeTracked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09ED284408840095095E /* AnimeTracked.swift */; };
+		6F8E09F12844088D0095095E /* BooksTracked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09F02844088D0095095E /* BooksTracked.swift */; };
+		6F8E09F4284408AB0095095E /* MangaTracked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09F3284408AB0095095E /* MangaTracked.swift */; };
+		6F8E09F7284408B10095095E /* MovieTracked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09F6284408B10095095E /* MovieTracked.swift */; };
+		6F8E09F9284408BA0095095E /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09F8284408BA0095095E /* AddView.swift */; };
+		6F8E09FB284408C20095095E /* TrackingItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09FA284408C20095095E /* TrackingItems.swift */; };
+		6F8E09FD284639F40095095E /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09FC284639F40095095E /* MovieDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,13 @@
 		6F8E09D9284408530095095E /* OnTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8E09DD284408530095095E /* OnTrackUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTrackUITests.swift; sourceTree = "<group>"; };
 		6F8E09DF284408530095095E /* OnTrackUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTrackUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6F8E09ED284408840095095E /* AnimeTracked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimeTracked.swift; sourceTree = "<group>"; };
+		6F8E09F02844088D0095095E /* BooksTracked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTracked.swift; sourceTree = "<group>"; };
+		6F8E09F3284408AB0095095E /* MangaTracked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MangaTracked.swift; sourceTree = "<group>"; };
+		6F8E09F6284408B10095095E /* MovieTracked.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTracked.swift; sourceTree = "<group>"; };
+		6F8E09F8284408BA0095095E /* AddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		6F8E09FA284408C20095095E /* TrackingItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingItems.swift; sourceTree = "<group>"; };
+		6F8E09FC284639F40095095E /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +110,12 @@
 			children = (
 				6F8E09C2284408520095095E /* OnTrackApp.swift */,
 				6F8E09C4284408520095095E /* ContentView.swift */,
+				6F8E09FA284408C20095095E /* TrackingItems.swift */,
+				6F8E09F8284408BA0095095E /* AddView.swift */,
+				6F8E09F5284408B10095095E /* Movies */,
+				6F8E09F2284408AB0095095E /* Manga */,
+				6F8E09EF2844088D0095095E /* Books */,
+				6F8E09EC284408840095095E /* Anime */,
 				6F8E09C6284408530095095E /* Assets.xcassets */,
 				6F8E09C8284408530095095E /* Preview Content */,
 			);
@@ -125,6 +145,39 @@
 				6F8E09DF284408530095095E /* OnTrackUITestsLaunchTests.swift */,
 			);
 			path = OnTrackUITests;
+			sourceTree = "<group>";
+		};
+		6F8E09EC284408840095095E /* Anime */ = {
+			isa = PBXGroup;
+			children = (
+				6F8E09ED284408840095095E /* AnimeTracked.swift */,
+			);
+			path = Anime;
+			sourceTree = "<group>";
+		};
+		6F8E09EF2844088D0095095E /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				6F8E09F02844088D0095095E /* BooksTracked.swift */,
+			);
+			path = Books;
+			sourceTree = "<group>";
+		};
+		6F8E09F2284408AB0095095E /* Manga */ = {
+			isa = PBXGroup;
+			children = (
+				6F8E09F3284408AB0095095E /* MangaTracked.swift */,
+			);
+			path = Manga;
+			sourceTree = "<group>";
+		};
+		6F8E09F5284408B10095095E /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				6F8E09F6284408B10095095E /* MovieTracked.swift */,
+				6F8E09FC284639F40095095E /* MovieDetails.swift */,
+			);
+			path = Movies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +310,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F8E09F9284408BA0095095E /* AddView.swift in Sources */,
 				6F8E09C5284408520095095E /* ContentView.swift in Sources */,
+				6F8E09F12844088D0095095E /* BooksTracked.swift in Sources */,
+				6F8E09FB284408C20095095E /* TrackingItems.swift in Sources */,
+				6F8E09EE284408840095095E /* AnimeTracked.swift in Sources */,
+				6F8E09F7284408B10095095E /* MovieTracked.swift in Sources */,
+				6F8E09F4284408AB0095095E /* MangaTracked.swift in Sources */,
 				6F8E09C3284408520095095E /* OnTrackApp.swift in Sources */,
+				6F8E09FD284639F40095095E /* MovieDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
