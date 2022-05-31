@@ -89,6 +89,9 @@ struct AddView: View {
             }
         
         }
+        
+        
+        
     }
     func addManga(){
         let item = MangaList(name: name, rating: rating, chapters: chapters ?? 0, review: review)
