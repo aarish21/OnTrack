@@ -30,6 +30,7 @@ struct CustomGroup:View {
                     Text("")
                     HStack{
                         Text(label)
+                            .font(.subheadline)
                             .foregroundColor(.gray)
                             .fontWeight(.semibold)
                             .lineLimit(1)
@@ -45,10 +46,10 @@ struct CustomGroup:View {
 
 struct ContentView: View {
     @State private var searchText = ""
-    @ObservedObject var book = Book()
-    @ObservedObject var manga = Manga()
-    @ObservedObject var anime = Anime()
-    @ObservedObject var movie = Movie()
+    @ObservedObject var book : Book
+    @ObservedObject var manga : Manga
+    @ObservedObject var anime : Anime
+    @ObservedObject var movie : Movie
     var body: some View {
         NavigationView{
             ScrollView{
@@ -56,7 +57,7 @@ struct ContentView: View {
                 HStack{
                     NavigationLink(destination: MangaTracked()) {
                         CustomGroup(img: "books.vertical", count: "\(manga.items.count)", col: Color.green, label: "Manga")
-                            .environmentObject(manga)
+                            
                     }
                     NavigationLink(destination: AnimeTracked()){
                         CustomGroup(img: "tv", count: "\(anime.items.count)", col: Color.red, label: "Anime")
@@ -83,8 +84,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

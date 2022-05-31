@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct MangaList: Identifiable, Codable{
     var id = UUID()
@@ -79,6 +80,7 @@ struct MoviesList: Identifiable, Codable{
     var rating: Int
     var episode: Int
     var review: String
+   
 }
 
 class Movie: ObservableObject {

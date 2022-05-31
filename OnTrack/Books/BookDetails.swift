@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct MovieDetails: View {
+struct BookDetails: View {
 
-    @EnvironmentObject var movieObject : Movie
+    @EnvironmentObject var bookObject : Manga
     @State private var name = ""
     @State private var rating = 1
-    @State private var episodes: Int = 0
+    @State private var chapters: Int = 0
     @State private var review = ""
     var index: Int
     var body: some View {
         List{
-            TextField("Name", text: $movieObject.items[index].name)
+            TextField("Name", text: $bookObject.items[index].name)
             Stepper(value:$rating,in: 1...10, step: 1){
                 HStack{
                     Image(systemName: "star.fill")
@@ -25,15 +25,15 @@ struct MovieDetails: View {
                     Text("\(rating)")
                 }
             }
-            Stepper(value:$episodes, in: 0...30000,step: 1){
-                Text("\(episodes) Episodes")
+            Stepper(value:$chapters, in: 0...30000,step: 1){
+                Text("\(chapters) Chapters")
             }
             TextEditor(text: $review)
                 .frame(height: 100)
         }.onAppear {
            
-            rating = movieObject.items[index].rating
-            episodes = movieObject.items[index].episode
+            rating = bookObject.items[index].rating
+            chapters = bookObject.items[index].chapters
            
         }
         .onDisappear {
@@ -42,8 +42,8 @@ struct MovieDetails: View {
     }
     func saveChanges(){
        
-        movieObject.items[index].episode = episodes
-        movieObject.items[index].rating = rating
+        bookObject.items[index].chapters = chapters
+        bookObject.items[index].rating = rating
        
     }
         

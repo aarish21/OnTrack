@@ -11,7 +11,7 @@ import SwiftUI
 struct OnTrackApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(book: Book(), manga: Manga(), anime: Anime(), movie: Movie())
         }
     }
 }

@@ -17,36 +17,37 @@ struct AnimeTracked: View {
     var body: some View {
         
         List{
-            ForEach(filteredAnime){ list in
-                
-                HStack{
-                    VStack(alignment: .leading){
-                        Text(list.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        Text(" Ch \(list.episode)")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.secondary)
-                        HStack(spacing: 0){
-                            Image(systemName: "star.circle.fill")
-                                .foregroundColor(.secondary)
-                                .font(.subheadline)
-                            Text("\(list.rating)")
+            ForEach(filteredAnime.indices, id: \.self){ index in
+                NavigationLink(destination: AnimeDetails(index: index).environmentObject(anime)){
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text(filteredAnime[index].name)
+                                .font(.title)
+                                .fontWeight(.bold)
+                            Text(" Ch \(filteredAnime[index].episode)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
-                        }.padding(.leading,3)
-                        
+                            HStack(spacing: 0){
+                                Image(systemName: "star.circle.fill")
+                                    .foregroundColor(.secondary)
+                                    .font(.subheadline)
+                                Text("\(filteredAnime[index].rating)")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.secondary)
+                            }.padding(.leading,3)
+                            
+                            Spacer()
+                        }
                         Spacer()
-                    }
-                    Spacer()
-                    Image("pun1p343mw")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50,height: 70)
-                        .cornerRadius(5)
-                }.frame(height: 80)
+                        Image("pun1p343mw")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50,height: 70)
+                            .cornerRadius(5)
+                    }.frame(height: 80)
+                }
             }
             .onDelete(perform: removeItems)
             
@@ -64,12 +65,12 @@ struct AnimeTracked: View {
             }
         }
         .sheet(isPresented: $showAddOption){
-//            AddView(selectedOption: 1, manga: self.manga, anime: self.anime, movie: self.movie, book: self.book)
+            AddView(selectedOption: 1, manga: self.manga, anime: self.anime, movie: self.movie, book: self.book)
         }
         
     }
     
-  
+    
     var filteredAnime: [AnimeList]{
         if searchText.isEmpty {
             return anime.items

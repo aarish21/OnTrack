@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MangaTracked: View {
     @ObservedObject var book = Book()
-    @StateObject var manga = Manga()
+    @ObservedObject var manga = Manga()
     @ObservedObject var anime = Anime()
     @ObservedObject var movie = Movie()
     @State private var showAddOption = false
@@ -17,16 +17,14 @@ struct MangaTracked: View {
     var body: some View {
         
         List{
-            ForEach(filteredManga){ list in
-                
+            ForEach(filteredManga.indices, id: \.self){ index in
+                NavigationLink(destination: MangaDetails(index: index).environmentObject(manga)) {
                 HStack{
-                    
-                    
                     VStack(alignment: .leading){
-                        Text(list.name)
+                        Text(filteredManga[index].name)
                             .font(.title)
                             .fontWeight(.bold)
-                        Text(" Ch \(list.chapters)")
+                        Text(" Ch \(filteredManga[index].chapters)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
@@ -34,7 +32,7 @@ struct MangaTracked: View {
                             Image(systemName: "star.circle.fill")
                                 .foregroundColor(.secondary)
                                 .font(.subheadline)
-                            Text("\(list.rating)")
+                            Text("\(filteredManga[index].rating)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
@@ -49,11 +47,11 @@ struct MangaTracked: View {
                         .frame(width: 50,height: 70)
                         .cornerRadius(5)
                 }.frame(height: 80)
+                }
             }
             .onDelete(perform: removeItems)
 
         }
-        .environmentObject(manga)
         .searchable(text: $searchText)
         .navigationTitle("Manga")
         .toolbar{
@@ -67,8 +65,9 @@ struct MangaTracked: View {
             }
         }
         .sheet(isPresented: $showAddOption){
-            AddView(selectedOption: 0, anime: self.anime, movie: self.movie, book: self.book)
-                .environmentObject(manga)
+            AddView(selectedOption: 0,manga: manga
+                    , anime: self.anime, movie: self.movie, book: self.book)
+               
         }
         
     }

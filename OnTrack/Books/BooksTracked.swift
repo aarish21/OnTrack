@@ -12,45 +12,46 @@ struct BooksTracked: View {
     @ObservedObject var manga = Manga()
     @ObservedObject var anime = Anime()
     @ObservedObject var movie = Movie()
-   
+    
     @State private var showAddOption = false
     @State private var searchText = ""
     var body: some View {
         
         List{
-            ForEach(filteredbooks){ list in
-                
-                HStack{
-                    VStack(alignment: .leading){
-                        Text(list.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        Text(" Ch \(list.chapters)")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.secondary)
-                        HStack(spacing: 0){
-                            Image(systemName: "star.circle.fill")
-                                .foregroundColor(.secondary)
-                                .font(.subheadline)
-                            Text("\(list.rating)")
+            ForEach(filteredbooks.indices, id: \.self){ index in
+                NavigationLink(destination: BookDetails(index: index).environmentObject(book)) {
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text(filteredbooks[index].name)
+                                .font(.title)
+                                .fontWeight(.bold)
+                            Text(" Ch \(filteredbooks[index].chapters)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
-                        }.padding(.leading,3)
-                        
+                            HStack(spacing: 0){
+                                Image(systemName: "star.circle.fill")
+                                    .foregroundColor(.secondary)
+                                    .font(.subheadline)
+                                Text("\(filteredbooks[index].rating)")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.secondary)
+                            }.padding(.leading,3)
+                            
+                            Spacer()
+                        }
                         Spacer()
-                    }
-                    Spacer()
-                    Image("pun1p343mw")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50,height: 70)
-                        .cornerRadius(5)
-                }.frame(height: 80)
+                        Image("pun1p343mw")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50,height: 70)
+                            .cornerRadius(5)
+                    }.frame(height: 80)
+                }
             }
             .onDelete(perform: removeItems)
-//
+            //
             
         }
         .searchable(text: $searchText)
@@ -66,7 +67,7 @@ struct BooksTracked: View {
             }
         }
         .sheet(isPresented: $showAddOption){
-//            AddView(selectedOption: 3, manga: self.manga, anime: self.anime, movie: self.movie, book: self.book)
+            AddView(selectedOption: 3, manga: self.manga, anime: self.anime, movie: self.movie, book: self.book)
         }
         
     }

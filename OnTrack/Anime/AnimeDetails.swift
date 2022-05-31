@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct MovieDetails: View {
+struct AnimeDetails: View {
 
-    @EnvironmentObject var movieObject : Movie
+    @EnvironmentObject var animeObject : Anime
     @State private var name = ""
     @State private var rating = 1
     @State private var episodes: Int = 0
@@ -17,7 +17,7 @@ struct MovieDetails: View {
     var index: Int
     var body: some View {
         List{
-            TextField("Name", text: $movieObject.items[index].name)
+            TextField("Name", text: $animeObject.items[index].name)
             Stepper(value:$rating,in: 1...10, step: 1){
                 HStack{
                     Image(systemName: "star.fill")
@@ -32,8 +32,8 @@ struct MovieDetails: View {
                 .frame(height: 100)
         }.onAppear {
            
-            rating = movieObject.items[index].rating
-            episodes = movieObject.items[index].episode
+            rating = animeObject.items[index].rating
+            episodes = animeObject.items[index].episode
            
         }
         .onDisappear {
@@ -42,8 +42,8 @@ struct MovieDetails: View {
     }
     func saveChanges(){
        
-        movieObject.items[index].episode = episodes
-        movieObject.items[index].rating = rating
+        animeObject.items[index].episode = episodes
+        animeObject.items[index].rating = rating
        
     }
         
