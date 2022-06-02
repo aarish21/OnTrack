@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F31D1F92848C10400D0E5A6 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F31D1F82848C10400D0E5A6 /* ImagePicker.swift */; };
 		6F8E09C3284408520095095E /* OnTrackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09C2284408520095095E /* OnTrackApp.swift */; };
 		6F8E09C5284408520095095E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E09C4284408520095095E /* ContentView.swift */; };
 		6F8E09C7284408530095095E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F8E09C6284408530095095E /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F31D1F82848C10400D0E5A6 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6F8E09BF284408520095095E /* OnTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8E09C2284408520095095E /* OnTrackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTrackApp.swift; sourceTree = "<group>"; };
 		6F8E09C4284408520095095E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				6F8E09C4284408520095095E /* ContentView.swift */,
 				6F8E09FA284408C20095095E /* TrackingItems.swift */,
 				6F8E09F8284408BA0095095E /* AddView.swift */,
+				6F31D1F82848C10400D0E5A6 /* ImagePicker.swift */,
 				6F8E09F5284408B10095095E /* Movies */,
 				6F8E09F2284408AB0095095E /* Manga */,
 				6F8E09EF2844088D0095095E /* Books */,
@@ -319,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F31D1F92848C10400D0E5A6 /* ImagePicker.swift in Sources */,
 				6F8E09F9284408BA0095095E /* AddView.swift in Sources */,
 				6F8E09C5284408520095095E /* ContentView.swift in Sources */,
 				6F8E09F12844088D0095095E /* BooksTracked.swift in Sources */,
@@ -491,7 +495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OnTrack/Preview Content\"";
-				DEVELOPMENT_TEAM = J8S9X52T32;
+				DEVELOPMENT_TEAM = Q3BWML7R33;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -520,7 +524,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OnTrack/Preview Content\"";
-				DEVELOPMENT_TEAM = J8S9X52T32;
+				DEVELOPMENT_TEAM = Q3BWML7R33;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -25,10 +25,10 @@ struct AnimeDetails: View {
                     Text("\(rating)")
                 }
             }
-            Stepper(value:$episodes, in: 0...30000,step: 1){
+            Stepper(value:$animeObject.items[index].episode, in: 0...30000,step: 1){
                 Text("\(episodes) Episodes")
             }
-            TextEditor(text: $review)
+            TextEditor(text: $animeObject.items[index].review)
                 .frame(height: 100)
         }.onAppear {
            

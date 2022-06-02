@@ -28,7 +28,7 @@ struct MovieDetails: View {
             Stepper(value:$episodes, in: 0...30000,step: 1){
                 Text("\(episodes) Episodes")
             }
-            TextEditor(text: $review)
+            TextEditor(text: $movieObject.items[index].review)
                 .frame(height: 100)
         }.onAppear {
            

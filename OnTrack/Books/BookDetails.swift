@@ -28,7 +28,7 @@ struct BookDetails: View {
             Stepper(value:$chapters, in: 0...30000,step: 1){
                 Text("\(chapters) Chapters")
             }
-            TextEditor(text: $review)
+            TextEditor(text: $bookObject.items[index].review)
                 .frame(height: 100)
         }.onAppear {
            

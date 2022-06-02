@@ -80,9 +80,24 @@ struct MoviesList: Identifiable, Codable{
     var rating: Int
     var episode: Int
     var review: String
-   
+//    let image: MyImage
 }
-
+//struct MyImage: Codable{
+//    let imageData: Data?
+//
+//    init(withImage image: UIImage) {
+//        self.imageData = image.pngData()
+//    }
+//
+//    func getImage() -> UIImage? {
+//        guard let imageData = self.imageData else {
+//            return nil
+//        }
+//        let image = UIImage(data: imageData)
+//
+//        return image
+//    }
+//}
 class Movie: ObservableObject {
     @Published var items = [MoviesList](){
         
