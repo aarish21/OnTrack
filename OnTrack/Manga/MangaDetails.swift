@@ -16,13 +16,12 @@ struct MangaDetails: View {
     @State private var review = ""
     @State private var inputImage: UIImage?
     @State private var showImagePicker = false
-    let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
-    
+    @State private var showEditView = false
     var imageToDisplay: Image {
         if let displayedImage = inputImage {
             return Image(uiImage: displayedImage)
         } else {
-            return Image(systemName: "photo")
+            return Image(uiImage: UIImage(named: "default")!)
                 
         }
        
@@ -33,49 +32,12 @@ struct MangaDetails: View {
         
             
         List{
-            AsyncImage(url: documentsUrl.appendingPathComponent(mangaObject.items[index].id.uuidString)){ phase in
-                if let image = phase.image{
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.black)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        .contextMenu{
-                            Button{
-                                showImagePicker = true
-                            }label: {
-                                Label("Change Image", systemImage: "photo")
-                            }
-                            Button(role: .destructive){
-                                deleteDirectory(fileName: mangaObject.items[index].id.uuidString)
-                            }label: {
-                                Label("Remove", systemImage: "trash")
-                            }
-                        }
-                }else if phase.error != nil {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(.black)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        .contextMenu{
-                            Button{
-                                showImagePicker = true
-                            }label: {
-                                Label("Add Image", systemImage: "photo")
-                            }
-                        }
-                }else{
-                    ProgressView()
-                        .frame(width: 100, height: 100)
-                }
-            }
+            
 //            if (inputImage == nil) {
 //                Image(systemName: "photo")
 //                    .resizable()
 //                    .scaledToFit()
 //                    .foregroundColor(.black)
-//                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
 //                    .contextMenu{
 //                        Button{
 //                            showImagePicker = true
@@ -83,69 +45,70 @@ struct MangaDetails: View {
 //                            Label("Add Image", systemImage: "photo")
 //                        }
 //                    }
-//            }else{
-//                imageToDisplay
-//                    .resizable()
-//                    .scaledToFit()
-//                    .foregroundColor(.black)
 //                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-//                    .contextMenu{
-//                        Button{
-//                            showImagePicker = true
-//                        }label: {
-//                            Label("Change Image", systemImage: "photo")
-//                        }
-//                        Button(role: .destructive){
-//                            deleteDirectory(fileName: mangaObject.items[index].id.uuidString)
-//                        }label: {
-//                            Label("Remove", systemImage: "trash")
-//                        }
-//                    }
+//            }else{
+                imageToDisplay
+                    .resizable()
+                    .scaledToFit()
+//                    .background(Color.clear)
+//                    .foregroundColor(.black)
+                    .contextMenu{
+                        Button{
+                            showImagePicker = true
+                        }label: {
+                            Label("Change Image", systemImage: "photo")
+                        }
+
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
 //            }
+
                 
             TextField("Name", text: $mangaObject.items[index].name)
             Stepper(value:$rating,in: 1...10, step: 1){
                 HStack{
                     Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.orange)
                     Text("\(rating)")
                 }
             }
             Stepper(value:$chapters, in: 0...30000,step: 1){
                 Text("\(chapters) Chapters")
+            }.swipeActions {
+                Button("Edit") {
+                    showEditView.toggle()
+                }
+                .tint(.orange)
             }
             TextEditor(text: $mangaObject.items[index].review)
-                .frame(height: 150)
+        }
+        .sheet(isPresented: $showEditView) {
+            EditView(val: $chapters, recieved: chapters)
         }
         .sheet(isPresented: $showImagePicker){
             ImagePicker(image: $inputImage)
         }
         .navigationTitle(mangaObject.items[index].name)
         .onAppear {
-          
+            inputImage = AddView.loadImageFromDocumentDirectory(fileName: mangaObject.items[index].id.uuidString)
             rating = mangaObject.items[index].rating
             chapters = mangaObject.items[index].chapters
         }
+        .onChange(of: chapters, perform: { _ in
+            saveChanges()
+        })
+        .onChange(of: rating, perform: { _ in
+            saveChanges()
+        })
         .onChange(of: inputImage, perform: { _ in
-            let _ =  AddView.saveImageInDocumentDirectory(image: inputImage!, fileName:  mangaObject.items[index].id.uuidString)
+            let _ =  AddView.saveImageInDocumentDirectory(image: (inputImage ?? UIImage(named: "default"))!, fileName:  mangaObject.items[index].id.uuidString)
         })
         .onDisappear {
             saveChanges()
         }
     }
    
-    func deleteDirectory(fileName: String) {
-        let fileManager = FileManager.default
-        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
-        let fileURL = documentsUrl.appendingPathComponent(fileName)
-
-        if fileManager.fileExists(atPath: fileURL.path){
-            try! fileManager.removeItem(atPath: fileURL.path)
-        }else{
-            print("not deleted")
-        }
-        
-    }
+   
     func saveChanges(){
         
         mangaObject.items[index].chapters = chapters

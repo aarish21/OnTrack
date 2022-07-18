@@ -50,25 +50,29 @@ struct ContentView: View {
     @ObservedObject var manga : Manga
     @ObservedObject var anime : Anime
     @StateObject var movie : Movie
+    @State var movieCount: Int?
+    @State var bookCount: Int?
+    @State var animeCount : Int?
+    @State var mangaCount: Int?
     var body: some View {
         NavigationView{
             ScrollView{
             VStack{
                 HStack{
-                    NavigationLink(destination: MangaTracked()) {
+                    NavigationLink(destination: MangaTracked(book: book, manga: manga, anime: anime, movie: movie)) {
                         CustomGroup(img: "books.vertical", count: "\(manga.items.count)", col: Color.green, label: "Manga")
                             
                     }
-                    NavigationLink(destination: AnimeTracked()){
+                    NavigationLink(destination: AnimeTracked(book: book, manga: manga, anime: anime, movie: movie)){
                         CustomGroup(img: "tv", count: "\(anime.items.count)", col: Color.red, label: "Anime")
                     }
                     
                 }.padding(.horizontal)
                 HStack{
-                    NavigationLink(destination: MovieTracked()) {
+                    NavigationLink(destination: MovieTracked(book: book, manga: manga, anime: anime, movie: movie)) {
                         CustomGroup(img: "film", count: "\(movie.items.count)", col: Color.gray, label: "Movies & Shows")
                     }
-                    NavigationLink(destination: BooksTracked()) {
+                    NavigationLink(destination: BooksTracked(book: book, manga: manga, anime: anime, movie: movie)) {
                         CustomGroup(img: "text.book.closed", count: "\(book.items.count)", col: Color.blue, label: "Books")
                     }
                     
@@ -76,12 +80,19 @@ struct ContentView: View {
                 }.padding(.horizontal)
                 Spacer()
             }
-            
+            .onAppear(perform: {
+             
+//                mangaCount = manga.items.count
+//                bookCount = book.items.count
+//                animeCount = anime.items.count
+//                movieCount = movie.items.count
+            })
             .navigationTitle("Track")
-            .searchable(text: $searchText)
+//            .searchable(text: $searchText)
             }
         }
     }
+   
 }
 
 //struct ContentView_Previews: PreviewProvider {

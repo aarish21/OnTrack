@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MovieTracked: View {
-    @ObservedObject var book = Book()
-    @ObservedObject var manga = Manga()
-    @ObservedObject var anime = Anime()
-    @ObservedObject var movie = Movie()
+    @ObservedObject var book : Book
+    @ObservedObject var manga : Manga
+    @ObservedObject var anime : Anime
+    @ObservedObject var movie : Movie
+    
     @State private var showAddOption = false
     @State private var searchText = ""
     var body: some View {
@@ -20,18 +21,32 @@ struct MovieTracked: View {
             ForEach(filteredMovie.indices, id: \.self){ index in
                 NavigationLink(destination:MovieDetails(index: index).environmentObject(movie)) {
                 HStack{
-                
+                    if let displayedImage = AddView.loadImageFromDocumentDirectory(fileName: filteredMovie[index].id.uuidString) {
+                        Image(uiImage: displayedImage)
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(2)
+                            .frame(width: 50,height: 70)
+                            
+                    } else {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .foregroundColor(.black)
+                            .scaledToFit()
+                            .cornerRadius(2)
+                            .frame(width: 50,height: 70)
+                    }
                     VStack(alignment: .leading){
                         Text(filteredMovie[index].name)
-                            .font(.title)
+                            .font(.title2)
                             .fontWeight(.bold)
                         Text(" Ep \(filteredMovie[index].episode)")
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
                         HStack(spacing: 0){
-                            Image(systemName: "star.circle.fill")
-                                .foregroundColor(.secondary)
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.orange)
                                 .font(.subheadline)
                             Text("\(filteredMovie[index].rating)")
                                 .font(.subheadline)
@@ -41,17 +56,13 @@ struct MovieTracked: View {
                         
                         Spacer()
                     }
-                    Spacer()
-                    Image("pun1p343mw")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50,height: 70)
-                        .cornerRadius(5)
+                    
+                   
                 }.frame(height: 80)
                 }
             }
             .onDelete(perform: removeItems)
-//
+            
             
         }
         .searchable(text: $searchText)
@@ -70,9 +81,11 @@ struct MovieTracked: View {
             AddView(selectedOption: 2,manga: self.manga, anime: self.anime, movie: self.movie, book: self.book)
         }
         
+        
     }
     func removeItems(at offsets: IndexSet) {
         movie.items.remove(atOffsets: offsets)
+        generator.notificationOccurred(.success)
     }
     var filteredMovie: [MoviesList]{
         if searchText.isEmpty {
@@ -83,8 +96,8 @@ struct MovieTracked: View {
     }
 }
 
-struct MovieTracked_Previews: PreviewProvider {
-    static var previews: some View {
-        MovieTracked()
-    }
-}
+//struct MovieTracked_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MovieTracked()
+//    }
+//}

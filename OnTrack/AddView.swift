@@ -42,7 +42,7 @@ struct AddView: View {
                     Stepper(value:$rating,in: 1...10, step: 1){
                         HStack{
                             Image(systemName: "star.fill")
-                                .foregroundColor(.yellow)
+                                .foregroundColor(.orange)
                             Text("\(rating)")
                         }
                     }
@@ -109,7 +109,7 @@ struct AddView: View {
         
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
         let fileURL = documentsUrl.appendingPathComponent(fileName)
-        if let imageData = image.pngData() {
+        if let imageData = image.jpegData(compressionQuality: 0.7){
             try? imageData.write(to: fileURL, options: .atomic)
             return fileURL
         }
@@ -126,6 +126,17 @@ struct AddView: View {
         } catch {}
         return nil
     }
+    public static func deleteDirectory(fileName: String) {
+        let fileManager = FileManager.default
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
+        let fileURL = documentsUrl.appendingPathComponent(fileName)
+
+        if fileManager.fileExists(atPath: fileURL.path){
+            try! fileManager.removeItem(atPath: fileURL.path)
+        }else{
+            print("not deleted")
+        }
+    }
     
     func loadImage() {
         guard let inputImage = inputImage else { return }
@@ -133,7 +144,7 @@ struct AddView: View {
     }
     func addManga(){
         let item = MangaList(name: name, rating: rating, chapters: chapters, review: review)
-       let _ =  AddView.saveImageInDocumentDirectory(image: inputImage!, fileName: item.id.uuidString)
+        let _ =  AddView.saveImageInDocumentDirectory(image: (inputImage ?? UIImage(named: "default"))!, fileName: item.id.uuidString)
         
         self.manga.items.append(item)
         generator.notificationOccurred(.success)
@@ -141,18 +152,21 @@ struct AddView: View {
     }
     func addAnime(){
         let item = AnimeList(name: name, rating: rating, episode: episodes , review: review)
+        let _ =  AddView.saveImageInDocumentDirectory(image: (inputImage ?? UIImage(named: "default"))!, fileName: item.id.uuidString)
         self.anime.items.append(item)
         generator.notificationOccurred(.success)
         dismiss()
     }
     func addMovies(){
         let item = MoviesList(name: name, rating: rating, episode: episodes , review: review)
+        let _ =  AddView.saveImageInDocumentDirectory(image: (inputImage ?? UIImage(named: "default"))!, fileName: item.id.uuidString)
         self.movie.items.append(item)
         generator.notificationOccurred(.success)
         dismiss()
     }
     func addBooks(){
         let item = BookList(name: name, rating: rating, chapters: chapters , review: review)
+        let _ =  AddView.saveImageInDocumentDirectory(image: (inputImage ?? UIImage(named: "default"))!, fileName: item.id.uuidString)
         self.book.items.append(item)
         generator.notificationOccurred(.success)
         dismiss()
