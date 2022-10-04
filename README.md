@@ -22,7 +22,7 @@ OnTrack Application makes it very easy to track your favourate Movies,Anime,Mang
 ## Use OnTrack
 - open Terminal
 - Go to Desired Directory where you want to have OnTrack Application, then Type:
->    `git clone https://github.com/aarish21/OnTrack`
+>    `git clone https://github.com/aarish21/OnTrack.git`
 - or Download Repository
 
 ## Screen Shots
