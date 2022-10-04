@@ -24,3 +24,20 @@ OnTrack Application makes it very easy to track your favourate Movies,Anime,Mang
 - Go to Desired Directory where you want to have OnTrack Application, then Type:
 >    `git clone https://github.com/aarish21/OnTrack`
 - or Download Repository
+
+## Screen Shots
+<div style="display:flex">
+<img style="margin: 40px ; border-radius:3% " src = "https://user-images.githubusercontent.com/98019495/193911229-398d5dbd-6eb4-4bee-946c-0c873e591a9a.png" width="200" height="400"/> 
+
+<img style="margin: 40px ; border-radius:3% " src = "https://user-images.githubusercontent.com/98019495/193912157-5e4347fc-a794-4594-b66f-0a943c353c1e.png" width="200" height="400"/> 
+
+</div>
+<span style="margin-left:8rem"> Home </span>
+<span style="margin-left:16.5rem"> Anime List</span>
+<div style="display:flex">
+<img style="margin: 40px ;border-radius:3% " src = "https://user-images.githubusercontent.com/98019495/193912466-95b9308f-c148-4613-b0fc-aaf733057f95.png" width="200" height="400"/> 
+
+<img style="margin: 40px ;border-radius:3% " src = "https://user-images.githubusercontent.com/98019495/193912119-bbb82944-30da-49ab-a4ef-6eb4745c1921.png" width="200" height="400"/> 
+</div>
+<span style="margin-left:8rem"> Search  </span>
+<span style="margin-left:16.5rem"> Add Content</span>
