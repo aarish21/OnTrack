@@ -20,45 +20,47 @@ struct MovieTracked: View {
         List{
             ForEach(filteredMovie.indices, id: \.self){ index in
                 NavigationLink(destination:MovieDetails(index: index).environmentObject(movie)) {
-                HStack{
-                    if let displayedImage = AddView.loadImageFromDocumentDirectory(fileName: filteredMovie[index].id.uuidString) {
-                        Image(uiImage: displayedImage)
-                            .resizable()
-                            .scaledToFit()
-                            .cornerRadius(2)
-                            .frame(width: 50,height: 70)
+                    HStack{
+                        
+                        if let displayedImage = AddView.loadImageFromDocumentDirectory(fileName: filteredMovie[index].id.uuidString) {
+                            Image(uiImage: displayedImage)
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(2)
+                                .frame(width: 50,height: 70)
                             
-                    } else {
-                        Image(systemName: "photo")
-                            .resizable()
-                            .foregroundColor(.black)
-                            .scaledToFit()
-                            .cornerRadius(2)
-                            .frame(width: 50,height: 70)
-                    }
-                    VStack(alignment: .leading){
-                        Text(filteredMovie[index].name)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        Text(" Ep \(filteredMovie[index].episode)")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.secondary)
-                        HStack(spacing: 0){
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.orange)
-                                .font(.subheadline)
-                            Text("\(filteredMovie[index].rating)")
+                        } else {
+                            Image(systemName: "photo")
+                                .resizable()
+                                .foregroundColor(.black)
+                                .scaledToFit()
+                                .cornerRadius(2)
+                                .frame(width: 50,height: 70)
+                        }
+                        
+                        VStack(alignment: .leading){
+                            Text(filteredMovie[index].name)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            Text(" Ep \(filteredMovie[index].episode)")
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
                                 .foregroundColor(.secondary)
-                        }.padding(.leading,3)
+                            HStack(spacing: 0){
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.orange)
+                                    .font(.subheadline)
+                                Text("\(filteredMovie[index].rating)")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.secondary)
+                            }.padding(.leading,3)
+                            
+                            Spacer()
+                        }
                         
-                        Spacer()
-                    }
-                    
-                   
-                }.frame(height: 80)
+                        
+                    }.frame(height: 80)
                 }
             }
             .onDelete(perform: removeItems)

@@ -171,8 +171,6 @@ struct AddView: View {
         generator.notificationOccurred(.success)
         dismiss()
     }
-    
-   
 }
 
 //struct AddView_Previews: PreviewProvider {
@@ -181,10 +179,5 @@ struct AddView: View {
 //        
 //    }
 //}
-extension FileManager {
-    static var documentsDirectory: URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-}
+
 

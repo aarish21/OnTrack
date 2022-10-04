@@ -8,12 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct MangaList: Identifiable, Codable{
+
+struct MangaList: Identifiable, Codable,ContentList{
     var id = UUID()
     var name: String
     var rating: Int
     var chapters: Int
     var review: String
+    var type: ContentType = .manga
 }
 
 class Manga: ObservableObject {
@@ -37,16 +39,17 @@ class Manga: ObservableObject {
             items = []
             print("Unable to .")
         }
-
     }
 }
 
-struct AnimeList: Identifiable, Codable{
+
+struct AnimeList: Identifiable, Codable,ContentList{
     var id = UUID()
     var name: String
     var rating: Int
     var episode: Int
     var review: String
+    var type: ContentType = .anime
 }
 
 class Anime: ObservableObject {
@@ -74,12 +77,15 @@ class Anime: ObservableObject {
     }
 }
 
-struct MoviesList: Identifiable, Codable{
+
+
+struct MoviesList: Identifiable, Codable,ContentList{
     var id = UUID()
     var name: String
     var rating: Int
     var episode: Int
     var review: String
+    var type: ContentType = .movies
 //    let image: MyImage
 }
 //struct MyImage: Codable{
@@ -125,13 +131,15 @@ class Movie: ObservableObject {
     }
 }
 
-struct BookList: Identifiable, Codable{
+
+
+struct BookList: Identifiable, Codable,ContentList{
     var id = UUID()
     var name: String
     var rating: Int
     var chapters: Int
     var review: String
-    
+    var type: ContentType = .books
 }
 
 
@@ -159,6 +167,7 @@ class Book: ObservableObject {
 
     }
 }
+
 class NumbersOnly: ObservableObject {
     @Published var value = "" {
         didSet {

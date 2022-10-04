@@ -82,8 +82,6 @@ struct MangaTracked: View {
                     , anime: self.anime, movie: self.movie, book: self.book)
             
         }
-      
-        
     }
     
     
@@ -98,11 +96,9 @@ struct MangaTracked: View {
     }
     
     func removeItems(at offsets: IndexSet) {
-        
         manga.items.remove(atOffsets: offsets)
         generator.notificationOccurred(.success)
     }
-    
 }
 
 //struct MangaTracked_Previews: PreviewProvider {
